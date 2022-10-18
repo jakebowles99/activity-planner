@@ -1,22 +1,12 @@
-#https://blog.devsense.com/2019/php-nginx-docker
-version: "3"
+version: '3'
 services:
-  nginx:
+  php-apache-environment:
     build:
-      context: .
-      dockerfile: images/web-server/dockerfile
-    ports: 
-      - "8080:80"
-    networks:
-      - internal
+      context: ./src/web-server/php
+      dockerfile: dockerfile
+    container_name: php-apache
+    image: php:8.0-apache
     volumes:
-      - ./images/web-server/data/:/var/www/html/
-  php:
-    image: php:fpm-alpine
-    networks:
-      - internal
-    volumes:
-      - ./images/web-server/data/:/var/www/html/
-networks:
-  internal:
-    driver: bridge
+      - ./src/web-server/data/:/var/www/html/
+    ports:
+      - 8000:80

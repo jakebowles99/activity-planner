@@ -1,2 +1,0 @@
-FROM nginx:latest
-ADD ./images/web-server/default.conf /etc/nginx/conf.d
