@@ -9,7 +9,7 @@
 $conn = mysqli_init();
 mysqli_options($conn,MYSQLI_OPT_SSL_VERIFY_SERVER_CERT, true);
 mysqli_ssl_set($conn,NULL,NULL, "./CA.crt.pem", NULL, NULL);
-mysqli_real_connect($conn,"activityplanner.mysql.database.azure.com", "adminuser", "M0Nday123!?***", "databasename");
+mysqli_real_connect($conn,"activity-planner-dev.mysql.database.azure.com", "adminuser", "M0Nday123!?***!", "devtest");
 printf("Reading data from table: \n");
 $res = mysqli_query($conn, 'SELECT * FROM persons');
 while ($row = mysqli_fetch_assoc($res)) {
