@@ -28,7 +28,8 @@ spec:
             path: site.conf
       containers:
       - name: nginx
-        image: nginx:latest
+        image: activityplannerdev.azurecr.io/nginx
+        imagePullPolicy: Always
         ports:
         - containerPort: 80
         volumeMounts:
@@ -36,3 +37,5 @@ spec:
           mountPath: /code
         - name: config
           mountPath: /etc/nginx/conf.d
+      imagePullSecrets:
+      - name: acr

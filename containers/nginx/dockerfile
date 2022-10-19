@@ -1,4 +1,4 @@
 FROM nginx:latest
-COPY src/ /var/www/html/
+#COPY src/ /var/www/html/
 
 #docker build -t custom/nginx -f ./containers/nginx/dockerfile .
