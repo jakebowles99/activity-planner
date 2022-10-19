@@ -24,6 +24,10 @@ spec:
       - name: php
         image: activityplannerdev.azurecr.io/php
         imagePullPolicy: Always
+        lifecycle:
+          postStart:
+            exec:
+              command: ["/bin/bash", "-c", "cp /var/www/html /code -r"]
         volumeMounts:
         - name: code
           mountPath: /code
