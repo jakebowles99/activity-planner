@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-awesome-app-pod
+spec:
+  containers:
+    - name: test
+      image: activityplannerdev.azurecr.io/main
+      imagePullPolicy: IfNotPresent
+  imagePullSecrets:
+    - name: acr
