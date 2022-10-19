@@ -4,8 +4,8 @@ metadata:
   name: code
 spec:
   accessModes:
-  - ReadWriteOnce
+  - ReadWriteMany
   resources:
     requests:
       storage: 1Gi
-  storageClassName: my-local-storage
+  storageClassName: my-azurefile
