@@ -22,7 +22,7 @@ spec:
           claimName: code
       containers:
       - name: php
-        image: activityplannerdev.azurecr.io/php_wo_apache
+        image: activityplannerdev.azurecr.io/php
         imagePullPolicy: Always
         volumeMounts:
         - name: code

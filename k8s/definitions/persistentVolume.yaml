@@ -10,7 +10,7 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   storageClassName: my-local-storage
   hostPath:
-    path: /data/my-local-pv
+    path: /data/my-local-pv # You might have to create this manually. 
   nodeAffinity:
     required:
       nodeSelectorTerms:
