@@ -4,7 +4,7 @@
 
 <h1>Pending</h1>
 
-<?php echo "This is where the magic will go"
+<?php echo "This is where the magic will go - updated now too!"
 
 // $conn = mysqli_init();
 // mysqli_options($conn,MYSQLI_OPT_SSL_VERIFY_SERVER_CERT, true);
