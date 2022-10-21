@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: git-sync
+spec:
+  selector:
+    matchLabels:
+      app: git-sync
+  serviceName: "git-sync"
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: git-sync
+    spec:
+      volumes:
+      - name: code
+        persistentVolumeClaim:
+          claimName: code
+      containers:
+      - name: git-sync
+        image: k8s.gcr.io/git-sync-amd64:v2.0.6
+        imagePullPolicy: Always
+        volumeMounts:
+        - name: code
+          mountPath: /code 
+        args:
+          - "-repo=https://github.com/jakebowles99/activity-planner.git"
+          - "-branch=main"
+          - "-depth=1"
+          - "-max-sync-failures=-1"
+          - "-root=/code/src"
+          - "-dest=from-github"
+          - "-wait=60"
+          - "-ssh=false"
+        securityContext:
+          runAsUser: 0
