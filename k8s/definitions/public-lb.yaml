@@ -8,3 +8,5 @@ spec:
   - port: 80
   selector:
     app: nginx
+
+#TODO: This is temporary until I CBA to add an ingress controller: https://learn.microsoft.com/en-us/azure/aks/ingress-basic?tabs=azure-cli
