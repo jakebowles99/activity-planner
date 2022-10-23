@@ -1,0 +1,1 @@
+https://akv2k8s.io/installation/on-azure-aks/

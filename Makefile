@@ -7,17 +7,18 @@ build-php:
 push-php:
 	docker push activityplannerdev.azurecr.io/php
 tfi:
-	tf -chdir=./infra init
+	terraform -chdir=./infra init
 tfp:
-	tf -chdir=./infra plan
+	terraform -chdir=./infra plan
 tfa:
-	tf -chdir=./infra apply -auto-approve
+	terraform -chdir=./infra apply -auto-approve
 build-dbapi:
 	docker build -t activityplannerdev.azurecr.io/api-flask ./apis/database
 push-dbapi:
 	docker push activityplannerdev.azurecr.io/api-flask
 run-dbapi:
 	docker run -p 5000:5000 activityplannerdev.azurecr.io/api-flask
+pb-dbapi: build-dbapi push-dbapi
 k8-apply:
 	kubectl apply -f ./k8s/definitions
 k8s-delete:

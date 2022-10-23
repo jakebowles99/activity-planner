@@ -6,13 +6,14 @@ import pymysql
 from flask import jsonify
 from flask import flash, request
 from flask_cors import CORS, cross_origin
+import os
 
 app = Flask(__name__)
 CORS(app)
 
 mysql = MySQL()
 app.config['MYSQL_DATABASE_USER'] = 'adminuser'
-app.config['MYSQL_DATABASE_PASSWORD'] = 'M0Nday123!?***!'
+app.config['MYSQL_DATABASE_PASSWORD'] = os.getenv("MYSQL_ROOT_PASSWORD")
 app.config['MYSQL_DATABASE_DB'] = 'devtest'
 app.config['MYSQL_DATABASE_HOST'] = 'activity-planner-dev.mysql.database.azure.com'
 mysql.init_app(app)

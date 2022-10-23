@@ -15,3 +15,9 @@ resource "azurerm_kubernetes_cluster" "res-0" {
     type = "SystemAssigned"
   }
 }
+
+output "akv-principalId" {
+  value = azurerm_kubernetes_cluster.res-0.kubelet_identity[0].object_id
+}
+
+#ObjectID: 52311504-b7c1-44d6-81b8-a51426a105c3

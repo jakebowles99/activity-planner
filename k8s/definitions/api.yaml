@@ -17,6 +17,12 @@ spec:
         image: activityplannerdev.azurecr.io/api-flask
         ports:
         - containerPort: 5000
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-password
+              key: secret-value
 ---
 apiVersion: v1
 kind: Service
