@@ -43,6 +43,8 @@ This is just a location to stick your html files that will be accessed by the NG
 7. Do stuff
 
 ### Useful Commands
+``` 
 kubectl exec --stdin --tty $name -- /bin/bash
 kubectl port-forward deployment/nginx 8000:80
 kubectl get secrets/db-user-pass --template={{.data.password}} | base64 -D
+```
