@@ -12,10 +12,15 @@ tfp:
 	tf -chdir=./infra plan
 tfa:
 	tf -chdir=./infra apply -auto-approve
-db-api:
-	docker build -t demo-flask ./apis/database
+build-dbapi:
+	docker build -t activityplannerdev.azurecr.io/api-flask ./apis/database
+push-dbapi:
+	docker push activityplannerdev.azurecr.io/api-flask
+run-dbapi:
+	docker run -p 5000:5000 activityplannerdev.azurecr.io/api-flask
 k8-apply:
-	k apply -f k8/definitions
+	kubectl apply -f ./k8s/definitions
 k8s-delete:
-	k delete -f k8/definitions
-	
+	kubectl delete -f ./k8s/definitions
+k8s-exec:
+	kubectl exec --stdin --tty $(name) -- /bin/bash
