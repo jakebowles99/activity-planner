@@ -1,6 +1,10 @@
 # activity-planner
 Platform repository for an AKS hosted NGINX server with PHP and some APIs with an aim to build in a microservice architecture.
 
+//TODO: Try fresh deployment to test statefullness
+//TODO: Implement flux for GitOps on AKS
+//TODO: Pipeline Terraform
+
 ## Overview
 ### containers
 The ./containers folder is used to define some base images for development. The NGINX image is currently base, but allows for future dev
