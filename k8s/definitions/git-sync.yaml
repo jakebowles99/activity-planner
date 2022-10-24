@@ -1,12 +1,12 @@
 apiVersion: apps/v1
-kind: StatefulSet
+kind: Deployment
 metadata:
   name: git-sync
 spec:
   selector:
     matchLabels:
       app: git-sync
-  serviceName: "git-sync"
+  #serviceName: "git-sync"
   replicas: 1
   template:
     metadata:
