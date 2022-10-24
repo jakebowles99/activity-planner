@@ -8,6 +8,6 @@ fetch("https://catfact.ninja/fact")
   })
   .then(data => {
     console.log(data);
-    displayuser(data)
   })
   .catch((error) => console.error("FETCH ERROR:", error));
+
