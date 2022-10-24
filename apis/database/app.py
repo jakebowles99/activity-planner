@@ -18,7 +18,7 @@ app.config['MYSQL_DATABASE_DB'] = 'devtest'
 app.config['MYSQL_DATABASE_HOST'] = 'activity-planner-dev.mysql.database.azure.com'
 mysql.init_app(app)
 
-#127.0.0.1:5000/id?id=1
+#127.0.0.1:5000/data with content-type
 @app.route('/data', methods=['GET'])
 def getData():
     conn = mysql.connect()
@@ -28,8 +28,7 @@ def getData():
     respone = jsonify(empRow)
     respone.status_code = 200
     return respone
-
-#127.0.0.1:5000/data with content-type
+#Put it in body
 @app.route('/id', methods=['POST'])
 def getId():
     request_data = request.get_json()

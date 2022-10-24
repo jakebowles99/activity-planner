@@ -43,6 +43,7 @@ This is just a location to stick your html files that will be accessed by the NG
 3. Login the aks cluster using: ``` az aks get-credentials --resource-group myResourceGroup --name myAKSCluster ```
 4. Use HELM to deploy the aks2k8s chart: https://akv2k8s.io/installation/on-azure-aks/
 5. Spin up the K8s resources: ``` make k8-apply ```
+6. Deploy the ingress controller: https://learn.microsoft.com/en-us/azure/aks/ingress-basic?tabs=azure-cli # There might be errors here around ingress routes
 6. Get the service of the public ip for access: ``` kubectl get services ```
 7. Do stuff
 
