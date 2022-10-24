@@ -1,0 +1,30 @@
+version: '2'
+
+services:
+    web:
+        image: nginx:latest
+        ports:
+            - "8080:80"
+        volumes:
+            - ./build:/code
+            - ./local/site.conf:/etc/nginx/conf.d/default.conf
+        networks:
+            - code-network
+    php:
+        image: php-mysql
+        volumes:
+            - ./build:/code
+        networks:
+            - code-network
+    db-api:
+        image: activityplannerdev.azurecr.io/api-flask
+        ports: 
+            - "5000:5000"
+        networks:
+            - code-network
+        environment:
+          - MYSQL_ROOT_PASSWORD
+
+networks:
+    code-network:
+        driver: bridge
