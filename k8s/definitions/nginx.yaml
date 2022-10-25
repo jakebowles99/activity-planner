@@ -7,6 +7,7 @@ metadata:
 data:
   config : |
     server {
+      listen 8080;
       index index.php index.html;
       error_log  /var/log/nginx/error.log;
       access_log /var/log/nginx/access.log;
@@ -60,7 +61,7 @@ spec:
         image: activityplannerdev.azurecr.io/nginx
         imagePullPolicy: Always
         ports:
-        - containerPort: 80
+        - containerPort: 8080
         volumeMounts:
         - name: code
           mountPath: /code
@@ -82,4 +83,4 @@ spec:
     tier: backend
   ports:
   - protocol: TCP
-    port: 80
+    port: 8080
