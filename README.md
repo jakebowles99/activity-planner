@@ -43,7 +43,7 @@ This is just a location to stick your html files that will be accessed by the NG
 3. Login the aks cluster using: ``` az aks get-credentials --resource-group myResourceGroup --name myAKSCluster ```
 4. Use HELM to deploy the aks2k8s chart: https://akv2k8s.io/installation/on-azure-aks/
 5. Spin up the K8s resources: ``` make k8-apply ```
-6. Deploy the ingress controller: https://learn.microsoft.com/en-us/azure/aks/ingress-basic?tabs=azure-cli # There might be errors here around ingress routes
+6. Deploy the ingress controller: https://learn.microsoft.com/en-us/azure/aks/ingress-basic?tabs=azure-cli # There might be errors here around ingress routes. deploy into own naespae
 6. Get the service of the public ip for access: ``` kubectl get services ```
 7. Do stuff
 
@@ -53,3 +53,12 @@ kubectl exec --stdin --tty $name -- /bin/bash
 kubectl port-forward deployment/nginx 8000:80
 kubectl get secrets/db-user-pass --template={{.data.password}} | base64 -D
 ```
+
+###
+Useful point from SO on ingress:
+I would like to simplify the answer a bit further for those who are reletively new to Kubernetes and its ingress options in particular. There are 2 separate things that need to be present for ingress to work:
+
+Ingress Controller(essentially a separate Pod/Deployment along with a Service that can be used to utilize routing and proxying. Based on nginx container for example);
+Ingress rules(a separate Kubernetes resourse with kind: Ingress. Will only take effect if Ingress Controller is already deployed)
+Now, Ingress Controller can be deployed in any namespace and is, in fact, usually deployed in a namespace separate from your app services. It can out-of-the-box see Ingress rules in all namespaces in the cluster and will pick them up.
+The Ingress rules, however, must reside in the namespace where the app that they configure reside.
