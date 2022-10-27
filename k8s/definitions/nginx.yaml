@@ -7,22 +7,21 @@ metadata:
 data:
   config : |
     server {
-      listen 8080;
-      index index.php index.html;
-      error_log  /var/log/nginx/error.log;
-      access_log /var/log/nginx/access.log;
-      root /code/src/from-github/build;
-      location / {
-          try_files $uri $uri/ /index.php?$query_string;
-      }
-      location ~ \.php$ {
-          try_files $uri =404;
-          fastcgi_split_path_info ^(.+\.php)(/.+)$;
-          fastcgi_pass php:9000;
-          fastcgi_index index.php;
-          include fastcgi_params;
-          fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-          fastcgi_param PATH_INFO $fastcgi_path_info;
+        index index.php index.html;
+        server_name php-docker.local;
+        error_log  /var/log/nginx/error.log;
+        access_log /var/log/nginx/access.log;
+        absolute_redirect off;
+        root /code/src/from-github/build;
+
+        location ~ \.php$ {
+            try_files $uri =404;
+            fastcgi_split_path_info ^(.+\.php)(/.+)$;
+            fastcgi_pass php:9000;
+            fastcgi_index index.php;
+            include fastcgi_params;
+            fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+            fastcgi_param PATH_INFO $fastcgi_path_info;
         }
     }
 
@@ -61,7 +60,7 @@ spec:
         image: activityplannerdev.azurecr.io/nginx
         imagePullPolicy: Always
         ports:
-        - containerPort: 8080
+        - containerPort: 80
         volumeMounts:
         - name: code
           mountPath: /code
@@ -83,4 +82,4 @@ spec:
     tier: backend
   ports:
   - protocol: TCP
-    port: 8080
+    port: 80
