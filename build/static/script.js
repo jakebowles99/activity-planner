@@ -1,4 +1,4 @@
-fetch("http://20.108.235.195/api/data")
+fetch("https://catfact.ninja/fact")
   .then((response) => {
     if (response.ok) {
       return response.json();
